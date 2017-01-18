@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_meds_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_main_horizontal_margin"
+    android:paddingLeft="@dimen/activity_main_horizontal_margin"
+    android:paddingRight="@dimen/activity_main_horizontal_margin"
+    android:paddingTop="@dimen/activity_main_horizontal_margin"
+    tools:context="lkwid.takeyourmeds.activity.MedListActivity">
+</android.support.v7.widget.RecyclerView>

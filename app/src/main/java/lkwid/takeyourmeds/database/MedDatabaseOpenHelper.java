@@ -13,7 +13,7 @@ import lkwid.takeyourmeds.model.Medicine;
 
 public class MedDatabaseOpenHelper extends OrmLiteSqliteOpenHelper {
     public static final String DATABASE_NAME = "meds.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public MedDatabaseOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -37,9 +37,28 @@ public class SqliteMedDatabase implements MedDatabase {
     }
 
     @Override
-    public void addMed(Medicine med) {
+    public Medicine getMed(int position) {
         try {
-            mDao.create(med);
+            return mDao.queryForId(position);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void addMed(Medicine medicine) {
+        try {
+            mDao.create(medicine);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateMed(Medicine medicine, int position) {
+        try {
+            mDao.update(medicine);
         } catch (SQLException e) {
             e.printStackTrace();
         }

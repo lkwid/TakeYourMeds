@@ -15,7 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MedReminderActivity"></activity>
+        <activity android:name=".activity.MedReminderActivity" />
+        <activity android:name=".activity.MedPreviewActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <service
+            android:name=".service.MedNotificationService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

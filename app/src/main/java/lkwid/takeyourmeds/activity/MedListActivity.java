@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +17,7 @@ import lkwid.takeyourmeds.adapter.MedListAdapter;
 import lkwid.takeyourmeds.database.MedDatabase;
 import lkwid.takeyourmeds.database.SqliteMedDatabase;
 import lkwid.takeyourmeds.model.Medicine;
+import lkwid.takeyourmeds.notifications.NotificationPlanner;
 
 public class MedListActivity extends AppCompatActivity implements MedListAdapter.onClickListener {
     @BindView(R.id.activity_meds_list)
@@ -49,6 +49,8 @@ public class MedListActivity extends AppCompatActivity implements MedListAdapter
     protected void onResume() {
         super.onResume();
         refreshList();
+
+        new NotificationPlanner(mMedDatabase, this).remindToTakeMeds();
     }
 
     @Override

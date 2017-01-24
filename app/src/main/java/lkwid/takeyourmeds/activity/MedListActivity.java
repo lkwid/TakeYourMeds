@@ -17,7 +17,7 @@ import lkwid.takeyourmeds.adapter.MedListAdapter;
 import lkwid.takeyourmeds.database.MedDatabase;
 import lkwid.takeyourmeds.database.SqliteMedDatabase;
 import lkwid.takeyourmeds.model.Medicine;
-import lkwid.takeyourmeds.notifications.NotificationPlanner;
+import lkwid.takeyourmeds.NotificationPlanner;
 
 public class MedListActivity extends AppCompatActivity implements MedListAdapter.onClickListener {
     @BindView(R.id.activity_meds_list)

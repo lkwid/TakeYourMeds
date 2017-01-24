@@ -16,12 +16,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MedReminderActivity" />
-        <activity android:name=".activity.MedPreviewActivity"
+        <activity
+            android:name=".activity.MedPreviewActivity"
             android:windowSoftInputMode="stateHidden" />
 
         <service
             android:name=".service.MedNotificationService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <receiver
+            android:name=".receiver.BootCompleteReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

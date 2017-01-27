@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.util.List;
@@ -28,8 +29,8 @@ public class MedCreateActivity extends AppCompatActivity {
     EditText mDosage;
     @BindView(R.id.med_unit)
     RadioGroup mUnit;
-    @BindViews({R.id.units_pcs, R.id.units_mls})
-    List<RadioGroup> mUnitRadioButtons;
+    @BindViews({R.id.unit_pcs, R.id.unit_mls})
+    List<RadioButton> mUnitButtons;
     @BindViews({R.id.regularity_morning, R.id.regularity_noon, R.id.regularity_evening})
     List<CheckBox> mRegularity;
 
@@ -53,11 +54,11 @@ public class MedCreateActivity extends AppCompatActivity {
                 else
                     mRegularity.get(i).setChecked(false);
             }
-            mDosage.setText(mMedicine.getDosage());
+            mDosage.setText(String.valueOf(mMedicine.getDosage()));
             if (mMedicine.getUnit() == 0) {
-                mUnitRadioButtons.get(0).setEnabled(true);
+                mUnitButtons.get(0).setChecked(true);
             } else if (mMedicine.getUnit() == 1) {
-                mUnitRadioButtons.get(1).setEnabled(true);
+                mUnitButtons.get(1).setChecked(true);
             }
         }
     }

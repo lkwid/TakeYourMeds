@@ -74,9 +74,9 @@ public class Medicine {
     public String printUnit() {
         String printableUnits = new String();
         if (unit == 0)
-            printableUnits = "sztuk";
+            printableUnits = "szt";
         else if (unit == 1)
-            printableUnits = "mililitrów";
+            printableUnits = "ml";
 
         return printableUnits;
     }

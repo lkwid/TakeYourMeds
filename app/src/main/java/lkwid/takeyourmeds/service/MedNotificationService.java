@@ -2,6 +2,7 @@ package lkwid.takeyourmeds.service;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import lkwid.takeyourmeds.NotificationPlanner;
 import lkwid.takeyourmeds.R;
+import lkwid.takeyourmeds.activity.MedPreviewActivity;
 import lkwid.takeyourmeds.database.MedDatabase;
 import lkwid.takeyourmeds.database.SqliteMedDatabase;
 import lkwid.takeyourmeds.model.Medicine;
@@ -19,6 +21,7 @@ import lkwid.takeyourmeds.model.Medicine;
 public class MedNotificationService extends IntentService {
     MedDatabase mMedDatabase;
     private int mTimeId;
+    private ArrayList<Integer> mActiveList;
 
     public MedNotificationService() {
         super("MedNotificationService");
@@ -32,39 +35,35 @@ public class MedNotificationService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        ArrayList<Integer> morningMeds = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.MORNING));
-        ArrayList<Integer> noonMeds = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.NOON));
-        ArrayList<Integer> eveningMeds = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.EVENING));
-
-        ArrayList<Integer> activeList;
-        if (morningMeds != null) {
-            activeList = morningMeds;
+        if (intent.hasExtra(String.valueOf(NotificationPlanner.MORNING))) {
+            mActiveList = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.MORNING));
             mTimeId = NotificationPlanner.MORNING;
-        } else if (noonMeds != null) {
-            activeList = noonMeds;
+        } else if (intent.hasExtra(String.valueOf(NotificationPlanner.NOON))) {
+            mActiveList = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.NOON));
             mTimeId = NotificationPlanner.NOON;
-        } else if (eveningMeds != null) {
-            activeList = eveningMeds;
+        } else if (intent.hasExtra(String.valueOf(NotificationPlanner.EVENING))) {
+            mActiveList = intent.getIntegerArrayListExtra(String.valueOf(NotificationPlanner.EVENING));
             mTimeId = NotificationPlanner.EVENING;
-        } else
+        } else {
             return;
+        }
 
-//        Intent previewIntent = new Intent(this, MedPreviewActivity.class);
-//        previewIntent.putExtra("pos", medId);
-//
-//        PendingIntent pendingIntent = PendingIntent.getActivity
-//                (this, medId, previewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        NotificationCompat.Builder notification = buildNotification(activeList);
-//
-//        NotificationManager notificationManager =
-//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        notificationManager.notify(mTimeId, notification.build());
+        Intent previewIntent = new Intent(this, MedPreviewActivity.class);
+        previewIntent.putIntegerArrayListExtra(String.valueOf(mTimeId), mActiveList);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity
+                (this, mTimeId, previewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder notification = buildNotification(mActiveList, pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(mTimeId, notification.build());
 
     }
 
     @NonNull
-    private NotificationCompat.Builder buildNotification(ArrayList<Integer> arrayList) {
+    private NotificationCompat.Builder buildNotification(ArrayList<Integer> arrayList, PendingIntent pi) {
         List<Medicine> medicines = mMedDatabase.getMeds();
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -74,7 +73,7 @@ public class MedNotificationService extends IntentService {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
 //                .setTicker(medicine.getName())
                 .setPriority(NotificationCompat.PRIORITY_MAX)
-//                .setContentIntent(pendingIntent)
+                .setContentIntent(pi)
                 .setAutoCancel(true);
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.setBigContentTitle("Pamiętaj o swoich lekach");

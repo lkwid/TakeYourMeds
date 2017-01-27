@@ -46,7 +46,7 @@ public class MedListAdapter extends RecyclerView.Adapter<MedListAdapter.MedsView
 
         holder.mName.setText(medicine.getName());
         holder.mRegularity.setText(medicine.printRegularity()
-                +" dawkowanie: "+medicine.getDosage()+medicine.printUnit());
+                +"\n Dawkowanie: "+medicine.getDosage()+" "+medicine.printUnit());
         holder.mCurrentMed = medicine;
         holder.mCurrentPosition = medicine.getId();
         holder.mBlockListeners = false;
@@ -56,7 +56,6 @@ public class MedListAdapter extends RecyclerView.Adapter<MedListAdapter.MedsView
     public int getItemCount() {
         return mMedicines.size();
     }
-
 
     public class MedsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.med_name)

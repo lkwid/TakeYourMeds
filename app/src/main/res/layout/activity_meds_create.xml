@@ -44,13 +44,13 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/units_pcs"
+                    android:id="@+id/unit_pcs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="szt" />
 
                 <RadioButton
-                    android:id="@+id/units_mls"
+                    android:id="@+id/unit_mls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ml" />

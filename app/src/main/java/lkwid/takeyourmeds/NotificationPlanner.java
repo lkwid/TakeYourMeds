@@ -56,7 +56,6 @@ public class NotificationPlanner {
         Intent serviceIntent = new Intent(mContext, MedNotificationService.class);
         serviceIntent.putIntegerArrayListExtra(String.valueOf(notifyId), arrayList);
 
-
         return PendingIntent.getService(mContext, notifyId,
                 serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }

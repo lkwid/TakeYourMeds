@@ -17,13 +17,19 @@ import lkwid.takeyourmeds.database.MedDatabase;
 import lkwid.takeyourmeds.database.SqliteMedDatabase;
 import lkwid.takeyourmeds.model.Medicine;
 
-public class MedReminderActivity extends AppCompatActivity {
+public class MedCreateActivity extends AppCompatActivity {
     private MedDatabase mMedDatabase;
     private int mPosition = -1;
     private Medicine mMedicine;
 
     @BindView(R.id.med_name)
     EditText mName;
+    @BindView(R.id.med_dosage)
+    EditText mDosage;
+    @BindView(R.id.med_unit)
+    RadioGroup mUnit;
+    @BindViews({R.id.units_pcs, R.id.units_mls})
+    List<RadioGroup> mUnitRadioButtons;
     @BindViews({R.id.regularity_morning, R.id.regularity_noon, R.id.regularity_evening})
     List<CheckBox> mRegularity;
 
@@ -31,7 +37,7 @@ public class MedReminderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meds_reminder);
+        setContentView(R.layout.activity_meds_create);
         ButterKnife.bind(this);
 
         mMedDatabase = new SqliteMedDatabase(this);
@@ -46,6 +52,12 @@ public class MedReminderActivity extends AppCompatActivity {
                     mRegularity.get(i).setChecked(true);
                 else
                     mRegularity.get(i).setChecked(false);
+            }
+            mDosage.setText(mMedicine.getDosage());
+            if (mMedicine.getUnit() == 0) {
+                mUnitRadioButtons.get(0).setEnabled(true);
+            } else if (mMedicine.getUnit() == 1) {
+                mUnitRadioButtons.get(1).setEnabled(true);
             }
         }
     }
@@ -65,6 +77,8 @@ public class MedReminderActivity extends AppCompatActivity {
             }
         }
         medicine.setRegularity(regularityBuilder.toString());
+        medicine.setDosage(Integer.parseInt(mDosage.getText().toString()));
+        medicine.setUnit(mUnit.getCheckedRadioButtonId());
 
         if (mPosition == -1)
             mMedDatabase.addMed(medicine);

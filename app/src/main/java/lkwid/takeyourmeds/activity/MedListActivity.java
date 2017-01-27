@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.facebook.stetho.Stetho;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lkwid.takeyourmeds.R;
@@ -31,8 +29,6 @@ public class MedListActivity extends AppCompatActivity implements MedListAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meds_list);
         ButterKnife.bind(this);
-
-        Stetho.initializeWithDefaults(this);
 
         mMedDatabase = new SqliteMedDatabase(this);
 
@@ -62,7 +58,7 @@ public class MedListActivity extends AppCompatActivity implements MedListAdapter
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_med_create) {
-            Intent createMedReminder = new Intent(this, MedReminderActivity.class);
+            Intent createMedReminder = new Intent(this, MedCreateActivity.class);
             startActivity(createMedReminder);
             return true;
         }
@@ -75,7 +71,7 @@ public class MedListActivity extends AppCompatActivity implements MedListAdapter
 
     @Override
     public void onClick(Medicine medicine, int position) {
-        Intent editMedReminder= new Intent(this, MedReminderActivity.class);
+        Intent editMedReminder= new Intent(this, MedCreateActivity.class);
         editMedReminder.putExtra("pos", position);
         startActivity(editMedReminder);
     }

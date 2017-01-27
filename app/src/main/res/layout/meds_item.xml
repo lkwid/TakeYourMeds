@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:padding="@dimen/activity_main_horizontal_margin">
+    android:padding="@dimen/activity_horizontal_margin">
 
     <ImageView
         android:id="@+id/med_image"
@@ -23,12 +23,12 @@
         android:textColor="@color/colorAccent" />
 
     <TextView
-        android:id="@+id/med_regularity"
+        android:id="@+id/med_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@color/colorPrimary"
-        android:text="Kiedy brać?"
+        android:text="Kiedy i ile?"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
         android:textColor="@color/colorAccent" />

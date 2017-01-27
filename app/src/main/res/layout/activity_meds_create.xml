@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="lkwid.takeyourmeds.activity.MedReminderActivity">
+    tools:context="lkwid.takeyourmeds.activity.MedCreateActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +25,45 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/med_dosage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Dawkowanie"
+                android:inputType="number"
+                android:maxLength="3" />
+
+            <RadioGroup
+                android:id="@+id/med_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/med_dosage"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/units_pcs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="szt" />
+
+                <RadioButton
+                    android:id="@+id/units_mls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ml" />
+
+            </RadioGroup>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_marginTop="@dimen/activity_create_vertical_margin"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/regularity_morning"
@@ -58,6 +95,7 @@
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_create_vertical_margin"
             android:text="Zapisz" />
 
     </LinearLayout>

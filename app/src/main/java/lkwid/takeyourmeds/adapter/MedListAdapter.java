@@ -4,11 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lkwid.takeyourmeds.R;
@@ -41,7 +45,8 @@ public class MedListAdapter extends RecyclerView.Adapter<MedListAdapter.MedsView
         Medicine medicine = mMedicines.get(position);
 
         holder.mName.setText(medicine.getName());
-        holder.mRegularity.setText(medicine.printRegularity());
+        holder.mRegularity.setText(medicine.printRegularity()
+                +" dawkowanie: "+medicine.getDosage()+medicine.printUnit());
         holder.mCurrentMed = medicine;
         holder.mCurrentPosition = medicine.getId();
         holder.mBlockListeners = false;
@@ -56,7 +61,7 @@ public class MedListAdapter extends RecyclerView.Adapter<MedListAdapter.MedsView
     public class MedsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.med_name)
         TextView mName;
-        @BindView(R.id.med_regularity)
+        @BindView(R.id.med_footer)
         TextView mRegularity;
         Medicine mCurrentMed;
         int mCurrentPosition;

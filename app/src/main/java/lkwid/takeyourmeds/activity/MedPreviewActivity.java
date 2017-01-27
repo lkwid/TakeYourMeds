@@ -7,7 +7,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lkwid.takeyourmeds.R;
 
-public class MedPreviewActivity extends MedReminderActivity {
+public class MedPreviewActivity extends MedCreateActivity {
     @BindView(R.id.btn_save)
     Button mSaveButton;
 

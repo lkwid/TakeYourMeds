@@ -52,12 +52,12 @@ public class NotificationPlanner {
         }
     }
 
-    private PendingIntent pendingIntent(ArrayList<Integer> arrayList, int requestCode) {
+    private PendingIntent pendingIntent(ArrayList<Integer> arrayList, int notifyId) {
         Intent serviceIntent = new Intent(mContext, MedNotificationService.class);
-        serviceIntent.putIntegerArrayListExtra(String.valueOf(requestCode), arrayList);
+        serviceIntent.putIntegerArrayListExtra(String.valueOf(notifyId), arrayList);
 
 
-        return PendingIntent.getService(mContext, requestCode,
+        return PendingIntent.getService(mContext, notifyId,
                 serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

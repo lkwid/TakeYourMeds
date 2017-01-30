@@ -71,9 +71,9 @@ public class MedNotificationService extends IntentService {
                 .setContentText("Przypomnienie o "+arrayList.size()+" lekach")
                 .setContentInfo("Godzina "+ mTimeId)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-//                .setTicker(medicine.getName())
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentIntent(pi)
+                .setOnlyAlertOnce(true)
                 .setAutoCancel(true);
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.setBigContentTitle("Pamiętaj o swoich lekach");

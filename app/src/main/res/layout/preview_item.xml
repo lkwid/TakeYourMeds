@@ -3,6 +3,7 @@
     android:id="@+id/preview_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
     android:maxLines="2">
 
 </TextView>

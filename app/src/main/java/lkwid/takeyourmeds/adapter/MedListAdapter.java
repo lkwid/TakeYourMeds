@@ -66,7 +66,6 @@ public class MedListAdapter extends RecyclerView.Adapter<MedListAdapter.MedsView
         int mCurrentPosition;
         boolean mBlockListeners = true;
 
-
         public MedsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

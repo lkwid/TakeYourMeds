@@ -23,7 +23,7 @@ public class MedPreviewActivity extends AppCompatActivity {
     private ArrayList<Integer> mReceivedList;
     private ArrayAdapter<String> mAdapter;
 
-    @BindView(R.id.activity_med_preview)
+    @BindView(R.id.preview_list)
     ListView mMedPreview;
 
     @Override
@@ -50,7 +50,7 @@ public class MedPreviewActivity extends AppCompatActivity {
         for (Integer id : mReceivedList) {
             for (int i=0; i < medicines.size(); i++) {
                 if (medicines.get(i).getId() == id) {
-                    previewList.add(medicines.get(i).getName() + "\n--dawkowanie: "
+                    previewList.add(medicines.get(i).getName() + "\n-- dawkowanie: "
                             + medicines.get(i).getDosage() + medicines.get(i).printUnit());
                     medicines.remove(i);
                 }

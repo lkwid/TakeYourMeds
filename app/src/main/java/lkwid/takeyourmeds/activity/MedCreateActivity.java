@@ -79,7 +79,11 @@ public class MedCreateActivity extends AppCompatActivity {
         }
         medicine.setRegularity(regularityBuilder.toString());
         medicine.setDosage(Integer.parseInt(mDosage.getText().toString()));
-        medicine.setUnit(mUnit.getCheckedRadioButtonId());
+        if (mUnitButtons.get(0).getId() == mUnit.getCheckedRadioButtonId()) {
+            medicine.setUnit(0);
+        } else {
+            medicine.setUnit(1);
+        }
 
         if (mPosition == -1)
             mMedDatabase.addMed(medicine);

@@ -73,7 +73,6 @@ public class MedNotificationService extends IntentService {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentIntent(pi)
-                .setOnlyAlertOnce(true)
                 .setAutoCancel(true);
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.setBigContentTitle("Pamiętaj o swoich lekach");
